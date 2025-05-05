@@ -51,7 +51,8 @@ public class AjaxAuthenticationEntryPoint extends LoginUrlAuthenticationEntryPoi
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         if (request.getHeader("x-requested-with") != null) {
-} else {
+            response.sendError(401, authException.getMessage());
+        } else {
             super.commence(request, response, authException);
         }
     }
